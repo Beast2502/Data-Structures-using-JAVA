@@ -3,28 +3,30 @@ package com.company;
 import java.util.Scanner;
 
 public class MagicSquare {
-    static int checkSquare(int n, int arr[][]){
-        int sum=0;
-        int sum1=0;
-        int sum2 =0;
-        for(int i =0;i<n;i++){
-            for(int j =0;j<n;j++){
-                if(i==j){
-                    sum = sum +arr[i][j];
-                }
-                if(i==0){
-                    sum1= sum1+arr[i][j];
-                }
-                if(j==0){
-                    sum2 = sum2 +arr[i][j];
-                }
+    static String checkSquare(int n, int arr[][]){
+
+        // diagonal check
+        int sum1 =0, sum2 =0;
+        for(int i=0;i<n;i++){
+            sum1 += arr[i][i];
+            sum2 += arr[i][n-1-i];
+        }
+        if(sum1 != sum2){
+            return "False";
+        }
+
+        // row and columns check
+        for(int i =0;i<n ;i++){
+            int rowSum=0, colSum=0;
+            for(int j=0;j<n;j++){
+                rowSum += arr[i][j];
+                colSum += arr[j][i];
+            }
+            if(rowSum != colSum || colSum != sum1){
+                return "False";
             }
         }
-        System.out.println("Diagonal "+sum);
-        System.out.println("row"+sum1);
-        System.out.println("Column"+sum2);
-        return 1;
-
+        return "True";
     }
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
@@ -38,6 +40,7 @@ public class MagicSquare {
             }
         }
 
-        int result = checkSquare(n, arr);
+        String result = checkSquare(n, arr);
+        System.out.print(result);
     }
 }

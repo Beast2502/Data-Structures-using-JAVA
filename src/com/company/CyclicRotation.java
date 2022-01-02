@@ -24,7 +24,7 @@ public class CyclicRotation {
 
     static void rotate(int [] arr)
     {
-        int i = 0, j = arr.length - 1;
+        int i = 0, j = arr.length-1;
         while(i != j)
         {
             int temp = arr[i];
@@ -34,6 +34,7 @@ public class CyclicRotation {
         }
     }
     static int[] cyclicRotation(int n, int[] arr, int k){
+
         while(k!=0){
             rotate(arr);
             k--;

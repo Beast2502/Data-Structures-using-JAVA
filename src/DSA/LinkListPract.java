@@ -1,5 +1,7 @@
 package DSA;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class LinkListPract {
@@ -48,7 +50,48 @@ public class LinkListPract {
       return;
    }
 
-   public void printList(){
+   //Search in the link list
+    public boolean searchData(int findData){
+       Node n = head;
+       while(n!=null){
+           if(n.data==findData){
+               return true;
+           }
+           n=n.next;
+       }
+       return false;
+    }
+
+    //delete the node
+
+   public void deleteNode(int delData)
+    {
+        // Store head node
+        Node n = head;
+        Node prev = null;
+
+        // If head node itself holds the key to be deleted
+        if (n != null && n.data == delData) {
+            head = n.next; // Changed head
+            return;
+        }
+
+        // Search for the key to be deleted, keep track of
+        // the previous node as we need to change temp.next
+        while (n != null && n.data != delData) {
+            prev = n;
+            n = n.next;
+        }
+
+        // If key was not present in linked list
+        if (n == null)
+            return;
+
+        // Unlink the node from linked list
+        prev.next = n.next;
+    }
+
+    public void printList(){
       Node n = head;
       while(n!=null){
          System.out.print(n.data+" ");
@@ -79,6 +122,17 @@ public class LinkListPract {
       System.out.println("");
       linkList.insertAtlast(600);
       linkList.printList();
+
+      //Searching element in the link list.
+      System.out.println("");
+      boolean searched = linkList.searchData(300);
+      System.out.println(searched);
+
+      //remove the node from linklist
+      System.out.println("");
+      linkList.deleteNode(550);
+      linkList.printList();
+
 
   }
 }

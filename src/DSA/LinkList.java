@@ -58,6 +58,9 @@ public class LinkList {
             System.out.print(n.data + " ");
             n=n.next;
         }
+
+
+
     }
 
     public static void main(String [] args){
